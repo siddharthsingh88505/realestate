@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Project</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/payment.css">
+    <!-- jquery -->
+    <script src="/js/jQuery.min.js"></script>
+    <script src="/js/jquery.payment.min.js"></script>
+</head>
+
+<body>
+    <!-- header section -->
+    <header class="container-fluid header-section">
+        <!-- top header -->
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <!-- left content -->
+                    <div class="col-lg-6 header-top-left">
+                        <div class="top-info">
+                            <i class="fa fa-phone"></i>
+                            (+91) 7767824255
+                        </div>
+                        <div class="top-info">
+                            <i class="fa fa-envelope"></i>
+                            siddharthsingh88505@gmail.com
+                        </div>
+                    </div>
+                    <!-- right content -->
+                    <div class="col-lg-6 text-lg-right header-top-right">
+                        <div class="top-social">
+                            <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href=""><i class="fa-brands fa-twitter"></i></a>
+                            <a href=""><i class="fa-brands fa-instagram"></i></a>
+                            <a href=""><i class="fa-brands fa-pinterest"></i></a>
+                            <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                        </div>
+                        <% if(verified) { %>
+                            <% if(userType==="Agent" ) { %>
+                                <div class="user-panel">
+                                    <a href="/logout"><i class="fa fa-sign-in"></i> &nbsp;Logout</a>
+                                </div>
+                                <% } else { %>
+                                    <div class="user-panel">
+                                        <a href="/register-as-agent"><i class="fa fa-sign-in"></i> &nbsp;Register as
+                                            Agent</a>
+                                        <a href="/logout"><i class="fa fa-sign-in"></i> &nbsp;Logout</a>
+                                    </div>
+                                    <% } %>
+                                        <% } else { %>
+                                            <div class="user-panel">
+                                                <a href="/register"><i class="fa-regular fa-user"></i>&nbsp;Register</a>
+                                                <a href="/login"><i class="fa fa-sign-in"></i> &nbsp;Login</a>
+                                            </div>
+                                            <% } %>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- main header -->
+        <div class="container">
+            <div class="main-header row">
+                <div class="col-12">
+                    <div class="site-navbar">
+                        <a href="/" class="site-logo">REAL<span class="estate">ESTATE</span></a>
+                        <!-- hamburger menu -->
+                        <div class="nav-switch">
+                            <i class="fa fa-bars"></i>
+                        </div>
+                        <!-- main menu -->
+                        <ul class="main-menu">
+                            <li><a href="/">HOME</a></li>
+                            <% if(verified && (userType==="Agent" )) { %>
+                                <li><a href="/upload-property">UPLOAD PROPERTY</a></li>
+                                <% } %>
+                                    <li><a href="/featured">FEATURED LISTING</a></li>
+                                    <li><a href="/about">ABOUT US</a></li>
+                                    <li><a href="/contact">CONTACT</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="togglebars container">
+            <ul class="toggle-menu">
+                <li><a href="/">HOME</a></li>
+                <% if(verified && (userType==="Agent" )) { %>
+                    <li><a href="/upload-property">UPLOAD PROPERTY</a></li>
+                    <% } %>
+                        <li><a href="/featured">FEATURED LISTING</a></li>
+                        <li><a href="/about">ABOUT US</a></li>
+                        <li><a href="/contact">CONTACT</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- payment section -->
+    <section class="payment-section spad">
+        <% if(success) { %>
+            <div class="successMsg container d-flex justify-content-center">
+                <div class="alert alert-success" role="alert">
+                    You have succesfully paid the token amount for further payment check your mail.
+                </div>
+            </div>
+            <% } %>
+                <% if(failed) { %>
+                    <div class="failedMsg container d-flex justify-content-center">
+                        <div class="alert alert-danger" role="alert">
+                            <%=message %>
+                        </div>
+                    </div>
+                    <% } %>
+                        <% if(property) { %>
+                            <div class="row">
+
+                                <div class="container d-flex justify-content-center">
+
+                                    <div class="col-md-6 col-sm-8">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <span>CREDIT/DEBIT</span>
+                                                    </div>
+                                                    <div class="col-md-6 text-right">
+                                                        <i class="fa-brands fa-cc-visa"></i>
+                                                        <i class="fa-brands fa-cc-mastercard"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <form action="/payment/<%=property[0].id %>" method="post">
+                                                    <% if(verified && price && !success) { %>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label for="cc-expt" class="control-label">Payment
+                                                                        Amount</label>
+                                                                    <input type="text" id="cc-amount"
+                                                                        class="input-lg form-control cc-amount" readonly
+                                                                        name="" value="$<%=price %>">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <% } %>
+                                                            <div class="form-group">
+                                                                <label for="cc-number" class="control-label">CARD
+                                                                    NUMBER</label>
+                                                                <input type="tel" id="cc-number"
+                                                                    class="input-lg form-control cc-number"
+                                                                    autocomplete="cc-number" name=""
+                                                                    placeholder=".... .... .... ....">
+                                                                <p class="error card-error text-danger">Card Error</p>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="cc-expt" class="control-label">CARD
+                                                                            EXPIRY</label>
+                                                                        <input type="tel" id="cc-exp"
+                                                                            class="input-lg form-control cc-exp"
+                                                                            autocomplete="cc-exp" name=""
+                                                                            placeholder=".. / ..">
+                                                                        <p class="error expiry-error text-danger">Expiry
+                                                                            Error
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="cc-cvc" class="control-label">CARD
+                                                                            CVC</label>
+                                                                        <input type="tel" id="cc-cvc"
+                                                                            class="input-lg form-control cc-cvc"
+                                                                            autocomplete="off" name=""
+                                                                            placeholder="....">
+                                                                        <p class="error cvc-error text-danger">Cvc Error
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="numberic" class="control-label">CARD HOLDER
+                                                                    NAME</label>
+                                                                <input type="text"
+                                                                    class="input-lg form-control cc-holder">
+                                                                <p class="error card-name-error text-danger">Card Name
+                                                                    Error</p>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="submit"
+                                                                    class="btn btn-success btn-lg form-control"
+                                                                    value="MAKE PAYMENT" id="submit-btn">
+                                                            </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+
+    </section>
+
+    <!-- footer section -->
+    <footer class="container-fluid footer-section">
+        <div class="hidden-element" hidden>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <a href="/" class="site-logo">REAL<span class="estate">ESTATE</span></a>
+                    <p>This project is developed to buy and rent the property as well as know the rates of
+                        different
+                        property. </p>
+                    <div class="social">
+                        <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href=""><i class="fa-brands fa-twitter"></i></a>
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-pinterest"></i></a>
+                        <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <div class="contact-widget">
+                        <h5 class="fw-title">CONTACT US</h5>
+                        <p><i class="fa fa-map-marker"></i>401-209 Nallasopara,Maharashtra. </p>
+                        <p><i class="fa fa-phone"></i>(+91) 7767824255</p>
+                        <p><i class="fa fa-envelope"></i>siddharthsingh88505@gmail.com</p>
+                        <p><i class="fa fa-clock-o"></i>Mon - Sat, 10:00 AM - 06:00 PM</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <div class="double-menu-widget">
+                        <h5 class="fw-title">POPULAR PLACES</h5>
+                        <ul>
+                            <li><a href="">Florida</a></li>
+                            <li><a href="">New York</a></li>
+                            <li><a href="">Washington</a></li>
+                            <li><a href="">Los Angeles</a></li>
+                            <li><a href="">Chicago</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="">St Louis</a></li>
+                            <li><a href="">Jacksonville</a></li>
+                            <li><a href="">San Jose</a></li>
+                            <li><a href="">San Diego</a></li>
+                            <li><a href="">Houston</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-nav">
+                    <!-- footer nav links -->
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/featured">Featured Listing</a></li>
+                        <li><a href="/about">About us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="/js/index.js"></script>
+    <script src="/js/payment.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,750 @@
+/* importing font style  */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap");
+
+* {
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+}
+
+/* variables */
+:root {
+    --header: #333333;
+    --hover: #38ab8c;
+    --header-text: #fff;
+    --footer-text: #ccc;
+    --heading-font-size: 36px;
+    --subtext-font-size: 18px;
+    --btn-backcolor: #30caa0;
+}
+
+/* header */
+.header-section {
+    background-color: var(--header);
+    padding: 0;
+    /* position: sticky;
+    top: 0;
+    z-index: 1; */
+}
+
+.d-non {
+    background-color: gold;
+    display: none;
+}
+
+.transform {
+    position: sticky;
+    top: 0;
+}
+
+p {
+    color: #707070;
+}
+
+a:hover,
+a:hover i {
+    color: var(--hover);
+}
+
+.header-top {
+    padding: 12px 0;
+    border-bottom: 1px solid #667792;
+    margin-bottom: 20px;
+}
+
+.top-info {
+    font-size: 14px;
+    color: #fff;
+    display: inline-block;
+}
+
+.top-info:first-child {
+    margin-right: 40px;
+}
+
+.top-social {
+    display: inline-block;
+}
+
+.top-social a {
+    color: #fff;
+    margin: 0 10px;
+}
+
+.user-panel {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.user-panel a {
+    color: #fff;
+    padding: 0 20px;
+    border-left: 1px solid #667792;
+}
+
+.site-logo {
+    display: inline-block;
+}
+
+.site-logo {
+    color: #fff;
+    font-weight: 600;
+    font-size: 32px;
+}
+
+.estate {
+    color: #30caa0;
+}
+
+.nav-switch {
+    display: none;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+}
+
+.main-menu {
+    float: right;
+    list-style: none;
+}
+
+.main-menu a {
+    color: #fff;
+}
+
+.main-menu li {
+    display: inline;
+}
+
+.main-menu li a {
+    display: inline-block;
+    color: #fff;
+    text-transform: uppercase;
+    margin-left: 30px;
+    padding: 12px 5px;
+    font-size: 14px;
+}
+
+.main-menu li:hover a {
+    text-decoration: none;
+    color: var(--hover);
+}
+
+.site-logo:hover {
+    text-decoration: none;
+    color: white;
+}
+
+/* toggle menus */
+.nav-switch {
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.togglebars {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.toggle-menu {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-menu li {
+    width: 100%;
+    text-align: center;
+    padding: 9px 0px;
+}
+
+.toggle-menu li a {
+    display: block;
+}
+
+.toggle-menu li:hover {
+    background-color: rgba(21, 11, 11, 0.312);
+}
+
+/* hero */
+.hero-container {
+    height: 100%;
+    display: flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section {
+    position: relative;
+    height: 600px;
+    background-image: url(../img/hero-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
+.hero-content {
+    color: var(--heder-text);
+    text-align: center;
+}
+
+h2 {
+    font-size: var(--heading-font-size);
+}
+
+.hero-content h2 {
+    color: #fff;
+}
+
+.hero-content .subtext {
+    font-size: var(--subtext-font-size);
+    color: rgb(235, 225, 225);
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.site-btn {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 2px;
+    border-radius: 3px;
+    min-width: 170px;
+    text-align: center;
+    background: var(--btn-backcolor);
+    cursor: pointer;
+    border: none;
+    color: #fff;
+}
+
+.site-btn:last-of-type {
+    margin-left: 15px;
+}
+
+.site-btn:hover {
+    color: #fff;
+    background-color: var(--hover);
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+/* properties */
+.spad {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.set-bg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
+.property-item {
+    height: 270px;
+    position: relative;
+    margin-bottom: 30px;
+    position: relative;
+    object-fit: contain;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top center;
+}
+
+.property-item:before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,303030+100&0+32,0.9+100 */
+    /* FF3.6-15 */
+    /* Chrome10-25,Safari5.1-6 */
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(32%, rgba(15, 15, 15, 0)), to(rgba(48, 48, 48, 0.9)));
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(15, 15, 15, 0) 32%, rgba(48, 48, 48, 0.9) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(15, 15, 15, 0) 32%, rgba(48, 48, 48, 0.9) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#e6303030', GradientType=0);
+    /* IE6-9 */
+}
+
+.property-item .sale-notic,
+.property-item .rent-notic {
+    position: absolute;
+    left: 0;
+}
+
+.property-info {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 30px;
+    padding-bottom: 20px;
+}
+
+.property-info h5 {
+    margin-bottom: 8px;
+    font-weight: 400;
+}
+
+.property-info p {
+    margin-bottom: 0;
+    color: rgb(235, 225, 225);
+    text-align: left;
+}
+
+.property-info p i {
+    color: #30caa0;
+    margin-right: 5px;
+}
+
+.property-info .info-warp {
+    float: left;
+}
+
+.property-info .more-detail {
+    float: right;
+    background: #30caa0;
+    padding: 12px;
+    min-width: 110px;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.sale-notic,
+.rent-notic {
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+    background: #e94646;
+    padding: 7px 13px;
+    display: inline-block;
+    border-radius: 2px;
+    position: relative;
+}
+
+.rent-notic {
+    background: #eca643;
+}
+
+.more-detail {
+    padding: 0 !important;
+    height: 50px;
+}
+
+.more-detail-link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+
+.more-detail:hover .more-detail-link {
+    text-decoration: none;
+    color: #fff;
+}
+
+.more-detail:hover {
+    background-color: var(--hover);
+    transition: 0.3s;
+}
+
+.property-list {
+    padding: 40px 0;
+}
+
+/* services */
+.services-section {
+    background-image: url(../img/service-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
+img {
+    max-width: 100%;
+}
+
+.services-section .section-title {
+    margin-bottom: 40px;
+    padding-top: 15px;
+}
+
+.service-img {
+    border-radius: 4px;
+}
+
+.section-title {
+    margin-bottom: 60px;
+}
+
+.service-item {
+    margin-bottom: 30px;
+    color: white;
+}
+
+.service-title h3,
+.service-title p {
+    color: white;
+}
+
+.service-item .service-text {
+    padding-left: 80px;
+    color: white;
+}
+
+.service-item i {
+    height: 60px;
+    width: 60px;
+    background: #30caa0;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 18px;
+    color: #fff;
+    font-size: 24px;
+    float: left;
+}
+
+.service-item .service-text p {
+    color: rgb(235, 225, 225);
+}
+
+/* featured */
+.feature-section .container {
+    margin-bottom: -50px;
+}
+
+.feature-item {
+    margin-bottom: 50px;
+}
+
+.feature-item .room-price {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    background: #fff;
+    text-align: center;
+    padding: 13px;
+    background: #30caa0;
+    color: #fff;
+}
+
+.feature-pic {
+    width: auto;
+    height: 250px;
+    background-image: url(../img/service.jpg);
+    background-size: contain;
+}
+
+.feature-pic .sale-notic,
+.feature-pic .rent-notic {
+    margin: 20px;
+}
+
+.feature-text {
+    border-left: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
+}
+
+.feature-title {
+    padding-top: 20px;
+}
+
+.feature-title h5 {
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.feature-title p {
+    margin-bottom: 0;
+}
+
+.feature-title p i {
+    color: #30caa0;
+}
+
+.room-info-warp {
+    padding: 25px;
+    padding-bottom: 0;
+}
+
+.room-info {
+    border-top: 1px solid #ebebeb;
+    padding-top: 15px;
+    overflow: hidden;
+}
+
+.room-info p {
+    margin-bottom: 15px;
+}
+
+.room-info p i {
+    color: #30caa0;
+    margin-right: 10px;
+}
+
+.room-info:last-child .rf-right {
+    padding-right: 14px;
+}
+
+.room-info .rf-left {
+    float: left;
+}
+
+.room-info .rf-right {
+    float: right;
+}
+
+/* feature category */
+.feature-category-section {
+    background: #f7f7f7;
+}
+
+.f-allign {
+    text-align: center;
+}
+
+.f-allign img {
+    margin-bottom: 20px;
+}
+
+.f-allign h5 {
+    font-weight: 400;
+    color: black;
+}
+
+.f-allign:hover img {
+    transform: scale(1.02);
+    transition: 0.3s;
+}
+
+.gallery {
+    margin-right: -20px;
+    position: relative;
+    height: 484.983px;
+}
+
+/* page top section */
+.page-top-section {
+    background-image: url(../img/page-top-bg.jpg);
+    height: 350px;
+    padding-top: 210px;
+}
+
+/* breadcrumb */
+.site-breadcrumb {
+    padding: 50px 0;
+}
+
+.site-breadcrumb a {
+    color: #000;
+    font-size: 16px;
+}
+
+.site-breadcrumb a:hover {
+    color: var(--hover);
+    text-decoration: none;
+}
+
+.site-breadcrumb span {
+    color: #cccccc;
+    font-size: 16px;
+}
+
+/* page section */
+.page-section {
+    padding-bottom: 100px;
+}
+
+
+
+/* footer */
+.footer-section {
+    background-image: url(../img/footer-bg.jpg);
+    object-fit: contain;
+    padding-top: 125px;
+    padding-bottom: 25px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
+h5 {
+    font-size: 20px;
+}
+
+footer p {
+    color: var(--footer-text);
+}
+
+.footer-widget .social a {
+    color: #fff;
+    font-size: 16px;
+    margin-right: 25px;
+}
+
+.footer-widget .contact-widget {
+    padding-left: 10px;
+}
+
+.footer-widget .site-logo {
+    margin-bottom: 25px;
+}
+
+.footer-widget .fw-title {
+    padding-top: 10px;
+    margin-bottom: 35px;
+    color: #fff;
+}
+
+.footer-widget .double-menu-widget {
+    padding-left: 20px;
+}
+
+.footer-widget .double-menu-widget ul {
+    list-style: none;
+    display: inline-block;
+}
+
+.footer-widget .double-menu-widget ul li a {
+    color: var(--footer-text);
+}
+
+.footer-widget .double-menu-widget ul li:hover a {
+    color: var(--hover);
+    text-decoration: none;
+}
+
+.footer-widget .double-menu-widget ul:last-child {
+    margin-left: 50px;
+}
+
+.footer-bottom {
+    overflow: hidden;
+    padding-top: 30px;
+    margin-top: 65px;
+    border-top: 1px solid #324a4e;
+}
+
+.footer-nav {
+    float: right;
+}
+
+.footer-nav ul li {
+    display: inline;
+    margin-right: 18px;
+}
+
+.footer-nav ul li:last-child {
+    margin: initial;
+}
+
+.footer-nav ul li a {
+    color: var(--footer-text);
+    font-size: 15px;
+}
+
+.footer-nav ul li:hover a {
+    text-decoration: none;
+    color: var(--hover);
+}
+
+.active {
+    color: #30caa0 !important;
+    border-color: #30caa0 !important;
+}
+
+/* media queries */
+@media (min-width:992px) {
+    .toggle-menu {
+        display: none;
+    }
+}
+
+@media (max-width:992px) {
+    .main-menu {
+        display: none;
+    }
+
+    .nav-switch {
+        display: block;
+    }
+
+    .site-navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+
+    .header-top-left,
+    .top-social {
+        display: none;
+    }
+
+    .user-panel {
+        margin-left: 0;
+    }
+
+    .site-btn:last-of-type {
+        margin-top: 10px;
+        margin-left: 0;
+    }
+
+    .hero-content .subtext {
+        display: none;
+    }
+
+    .hero-content h2 {
+        margin-bottom: 20px;
+    }
+
+    .site-btn {
+        width: 80% !important;
+    }
+
+    .hero-container {
+        padding: 0px;
+    }
+
+    .property-list {
+        padding: 20px 0px;
+    }
+
+    .footer-widget .contact-widget {
+        padding-top: 20px;
+        padding-left: 0px;
+    }
+
+    .footer-widget .contact-widget .fw-title {
+        margin-bottom: 8px;
+    }
+
+    .footer-widget .double-menu-widget .fw-title{
+        margin-bottom: 8px;
+    }
+
+    .footer-widget .double-menu-widget {
+        padding-left: 0;
+    }
+}

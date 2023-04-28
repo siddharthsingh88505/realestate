@@ -1,0 +1,42 @@
+<table class="table table-stripped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Email</th>
+            <th scope="col">Type</th>
+            <th scope="col" class="text-center">Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if(users.length===0){ %>
+            <tr>
+                <td scope="row">No Users Found</td>
+            </tr>
+    </tbody>
+    <% } else { %>
+        <% for(let i=0; i< users.length; i++) { %>
+            <tr>
+                <td scope="row">
+                    <%=i+1 %>
+                </td>
+                <td scope="row">
+                    <%=users[i].firstName %>
+                </td>
+                <td scope="row">
+                    <%=users[i].contact %>
+                </td>
+                <td scope="row">
+                    <%=users[i].email %>
+                </td>
+                <td scope="row">
+                    <%=users[i].userType %>
+                </td>
+                <td scope="row" class="text-center"><a href="/delete-user/<%= users[i].id %>" class="remove-btn"><i class="fa-solid fa-trash"></i></a></td>
+            </tr>
+            <% } %>
+                </tbody>
+                <% } %>
+
+</table>

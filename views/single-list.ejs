@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Project</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/single-list.css">
+    <!-- jQuery js -->
+    <script src="/js/jQuery.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <!-- header section -->
+    <header class="container-fluid header-section">
+        <!-- top header -->
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <!-- left content -->
+                    <div class="col-lg-6 header-top-left">
+                        <div class="top-info">
+                            <i class="fa fa-phone"></i>
+                            (+91) 7767824255
+                        </div>
+                        <div class="top-info">
+                            <i class="fa fa-envelope"></i>
+                            siddharthsingh88505@gmail.com
+                        </div>
+                    </div>
+                    <!-- right content -->
+                    <div class="col-lg-6 text-lg-right header-top-right">
+                        <div class="top-social">
+                            <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href=""><i class="fa-brands fa-twitter"></i></a>
+                            <a href=""><i class="fa-brands fa-instagram"></i></a>
+                            <a href=""><i class="fa-brands fa-pinterest"></i></a>
+                            <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                        </div>
+                        <% if(verified) { %>
+                            <% if(userType==="Agent" ) { %>
+                                <div class="user-panel">
+                                    <a href="/logout"><i class="fa fa-sign-in"></i> &nbsp;Logout</a>
+                                </div>
+                                <% } else { %>
+                                    <div class="user-panel">
+                                        <a href="/register-as-agent"><i class="fa fa-sign-in"></i> &nbsp;Register as
+                                            Agent</a>
+                                        <a href="/logout"><i class="fa fa-sign-in"></i> &nbsp;Logout</a>
+                                    </div>
+                                    <% } %>
+                                        <% } else { %>
+                                            <div class="user-panel">
+                                                <a href="/register"><i class="fa-regular fa-user"></i>&nbsp;Register</a>
+                                                <a href="/login"><i class="fa fa-sign-in"></i> &nbsp;Login</a>
+                                            </div>
+                                            <% } %>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- main header -->
+        <div class="container">
+            <div class="main-header row">
+                <div class="col-12">
+                    <div class="site-navbar">
+                        <a href="/" class="site-logo">REAL<span class="estate">ESTATE</span></a>
+                        <!-- hamburger menu -->
+                        <div class="nav-switch">
+                            <i class="fa fa-bars"></i>
+                        </div>
+                        <!-- main menu -->
+                        <ul class="main-menu">
+                            <li><a href="/">HOME</a></li>
+                            <% if(verified && (userType==="Agent" ) && !isAdmin) { %>
+                                <li><a href="/upload-property">UPLOAD PROPERTY</a></li>
+                                <% } %>
+                                    <% if(verified && isAdmin) { %>
+                                        <li><a href="/admin/dashboard">DASHBOARD</a></li>
+                                        <% } %>
+                                            <li><a href="/featured">FEATURED LISTING</a></li>
+                                            <li><a href="/about">ABOUT US</a></li>
+                                            <li><a href="/contact">CONTACT</a></li>
+                                            <% if(verified && !isAdmin) {%>
+                                                <li><a href="/chat">Chat</a></li>
+                                                <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="togglebars container">
+            <ul class="toggle-menu">
+                <li><a href="/">HOME</a></li>
+                <% if(verified && (userType==="Agent" ) && !isAdmin) { %>
+                    <li><a href="/upload-property">UPLOAD PROPERTY</a></li>
+                    <% } %>
+                        <% if(verified && isAdmin) { %>
+                            <li><a href="/admin/dashboard">DASHBOARD</a></li>
+                            <% } %>
+                                <li><a href="/featured">FEATURED LISTING</a></li>
+                                <li><a href="/about">ABOUT US</a></li>
+                                <li><a href="/contact">CONTACT</a></li>
+                                <% if(verified && !isAdmin) {%>
+                                    <li><a href="/chat">Chat</a></li>
+                                    <% } %>
+            </ul>
+        </div>
+    </header>
+
+    <!-- page top section -->
+    <section class="page-top-section set-bg text-center">
+        <div class="container text-white">
+            <% if(property) { %>
+                <h2>
+                    <%= property[0].name %>
+                </h2>
+                <% } %>
+
+        </div>
+    </section>
+    <!-- page top section end -->
+
+    <!-- breadcrumb -->
+    <div class="site-breadcrumb">
+        <div class="container">
+            <a href="/"><i class="fa fa-home"></i>Home</a>
+            <% if(property) { %>
+                <span><i class="fa fa-angle-right"></i>
+                    <%= property[0].name %>
+                </span>
+                <% } %>
+
+        </div>
+    </div>
+
+    <!-- page -->
+    <section class="page-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 single-list-page">
+                    <% if(property) { %>
+                        <div class="single-list-content">
+                            <div class="row">
+                                <div class="col-xl-8 sl-title">
+                                    <h2>
+                                        <%= property[0].name %>
+                                    </h2>
+                                    <p><i class="fa fa-map-marker"></i>
+                                        <%= property[0].location %>
+                                    </p>
+                                </div>
+                                <div class="col-xl-4">
+                                    <a href="/payment/<%=property[0].id %>" class="price-btn"> $
+                                        <%= property[0].price %>
+                                    </a>
+                                </div>
+                            </div>
+                            <h3 class="sl-sp-title">Property Details</h3>
+                            <div class="row property-details-list">
+                                <div class="col-md-4 col-sm-6">
+                                    <p><i class="fa fa-th-large"></i>
+                                        <%= property[0].area %> sq. ft
+                                    </p>
+                                    <p><i class="fa-solid fa-hotel"></i>
+                                        <%= property[0].type %>
+                                    </p>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <p><i class="fa fa-bed"></i>
+                                        <%= property[0].bedroom %> Bedroom
+                                    </p>
+                                    <p><i class="fa fa-user"></i>
+                                        <%= property[0].owner %>
+                                    </p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p><i class="fa fa-bath"></i>
+                                        <%= property[0].bathroom %> Bathroom
+                                    </p>
+                                    <% if((Date.now() - property[0].date.getTime()) / (1000 * 3600 * 24) < 1) { %>
+                                        <p><i class="fa-solid fa-clock-rotate-left"></i>
+                                            <% if(Math.trunc((Date.now() - property[0].date.getTime()) / (1000 * 3600))<
+                                                1) { %>
+                                                <%= Math.trunc((Date.now() - property[0].date.getTime()) / (1000 * 60))
+                                                    %>
+                                                    minutes ago
+                                                    <% } else if(Math.trunc((Date.now() - property[0].date.getTime()) /
+                                                        (1000 * 3600))===1) { %>
+                                                        <%= Math.trunc((Date.now() - property[0].date.getTime()) / (1000
+                                                            * 3600)) %> hour ago
+                                                            <% } else { %>
+                                                                <%= Math.trunc((Date.now() - property[0].date.getTime())
+                                                                    / (1000 * 3600)) %>
+                                                                    hours ago
+                                                                    <% } %>
+                                        </p>
+                                        <% } else { %>
+                                            <p><i class="fa-solid fa-clock-rotate-left"></i>
+                                                <% if(Math.trunc((Date.now() - property[0].date.getTime()) / (1000 *
+                                                    3600 * 24))===1 ) { %>
+                                                    1 day ago
+                                                    <% } else { %>
+                                                        <%= Math.trunc((Date.now() - property[0].date.getTime()) / (1000
+                                                            * 3600 * 24)) %> days ago
+                                                            <% } %>
+                                            </p>
+                                            <% } %>
+                                </div>
+                            </div>
+                            <h3 class="sl-sp-title">Description</h3>
+                            <div class="description">
+                                <p>
+                                    <%= property[0].description %>
+                                </p>
+                            </div>
+                            <% if(property[0].images.length>0) { %>
+
+                                <% if(property[0].images.length>1) { %>
+                                    <h3 class="sl-sp-title bd-no">Images</h3>
+                                    <!-- Slideshow container -->
+                                    <div class="slideshow-container">
+                                        <% for(let i=0;i < property[0].images.length;i++){ %>
+                                            <!-- Full-width images with number and caption text -->
+                                            <div class="mySlides fade">
+                                                <div class="numbertext">
+                                                    <%= i+1 %>/<%= property[0].images.length %>
+                                                </div>
+                                                <img src="/images/<%= property[0].images[i].id %>">
+                                            </div>
+                                            <% } %>
+
+                                                <!-- Next and previous buttons -->
+                                                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                                                <!-- The dots/circles -->
+                                                <div style="text-align:center" class="dot-container">
+                                                    <span class="dot" onclick="currentSlide(1)"></span>
+                                                    <span class="dot" onclick="currentSlide(2)"></span>
+                                                    <span class="dot" onclick="currentSlide(3)"></span>
+                                                </div>
+                                    </div>
+
+                                    <% } else { %>
+                                        <h3 class="sl-sp-title bd-no">Image</h3>
+                                        <!-- Slideshow container -->
+                                        <div class="slideshow-container">
+
+                                            <!-- Full-width images with number and caption text -->
+                                            <div class="mySlides fade">
+                                                <div class="numbertext">1 / 1</div>
+                                                <img src="/images/<%= property[0].images[0].id %>" style="width:100%">
+                                            </div>
+
+                                        </div>
+                                        <% } %>
+                                            <% } %>
+                                                <% if(property[0].videos.length>0) { %>
+                                                    <br>
+                                                    <h3 class="sl-sp-title bd-no">Video</h3>
+                                                    <div class="preview-video">
+                                                        <video src="/videos/<%= property[0].videos[0].id %>"
+                                                            controls></video>
+                                                    </div>
+                                                    <% } %>
+
+                        </div>
+                        <% } %>
+
+                </div>
+                <!-- sidebar -->
+                <div class="col-lg-4 col-md-7 sidebar">
+                    <% if(agent) { %>
+                        <div class="author-card">
+                            <div class="author-img">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h5>
+                                    <%= agent[0].firstName %>&nbsp;<%= agent[0].lastName %>
+                                </h5>
+                                <p>Real Estate Agent</p>
+                            </div>
+                            <div class="author-contact">
+                                <p><i class="fa fa-phone"></i>(+91) <%= agent[0].contact %>
+                                </p>
+                                <p><i class="fa fa-envelope"></i>
+                                    <%= agent[0].email %>
+                                </p>
+                                <% if(verified) { %>
+                                    <% if(user && !isSame) { %>
+                                        <a href="/add-user/<%=agent[0].id %>" id="chat-btn" class="chat-btn">Chat Now</a>
+                                        <% } %>
+                                    <% if(user && isSame) { %>
+                                        <button type="button" id="same-user-chat" class="chat-btn"
+                                            data-toggle="modal" data-target="#myModel1">Chat Now</button>
+                                            <% } %>
+                                        <% } else { %>
+                                                <button type="button" id="no-user-chat" class="chat-btn"
+                                                    data-toggle="modal" data-target="#myModel2">Chat Now</button>
+                                                <% } %>
+                                                        <!-- Modal for same user-->
+                                                        <div id="myModel1" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog">
+
+                                                                <!-- Modal content-->
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">Alert</h4>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal">&times;</button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p>Both the users cannot be same for chatting.
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-default"
+                                                                            data-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <!-- Modal for no user-->
+                                                        <div id="myModel2" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog">
+
+                                                                <!-- Modal content-->
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">Alert</h4>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal">&times;</button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p>Please login before chatting.</p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-default"
+                                                                            data-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- page end -->
+
+    <!-- clients section -->
+    <div class="clients-section">
+        <div class="container">
+            <div class="clients-slider owl-carousel">
+                <a href="#">
+                    <img src="img/partner/1.png" alt="">
+                </a>
+                <a href="#">
+                    <img src="img/partner/2.png" alt="">
+                </a>
+                <a href="#">
+                    <img src="img/partner/3.png" alt="">
+                </a>
+                <a href="#">
+                    <img src="img/partner/4.png" alt="">
+                </a>
+                <a href="#">
+                    <img src="img/partner/5.png" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer section -->
+    <footer class="container-fluid footer-section">
+        <div class="hidden-element" hidden>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <a href="/" class="site-logo">REAL<span class="estate">ESTATE</span></a>
+                    <p>This project is developed to buy and rent the property as well as know the rates of
+                        different
+                        property. </p>
+                    <div class="social">
+                        <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href=""><i class="fa-brands fa-twitter"></i></a>
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-pinterest"></i></a>
+                        <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <div class="contact-widget">
+                        <h5 class="fw-title">CONTACT US</h5>
+                        <p><i class="fa fa-map-marker"></i>401-209 Nallasopara,Maharashtra. </p>
+                        <p><i class="fa fa-phone"></i>(+91) 7767824255</p>
+                        <p><i class="fa fa-envelope"></i>siddharthsingh88505@gmail.com</p>
+                        <p><i class="fa fa-clock-o"></i>Mon - Sat, 10:00 AM - 06:00 PM</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <div class="double-menu-widget">
+                        <h5 class="fw-title">POPULAR PLACES</h5>
+                        <ul>
+                            <li><a href="">Florida</a></li>
+                            <li><a href="">New York</a></li>
+                            <li><a href="">Washington</a></li>
+                            <li><a href="">Los Angeles</a></li>
+                            <li><a href="">Chicago</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="">St Louis</a></li>
+                            <li><a href="">Jacksonville</a></li>
+                            <li><a href="">San Jose</a></li>
+                            <li><a href="">San Diego</a></li>
+                            <li><a href="">Houston</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-nav">
+                    <!-- footer nav links -->
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/featured">Featured Listing</a></li>
+                        <li><a href="/about">About us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="/js/index.js"></script>
+    <script src="/js/single-list.js"></script>
+</body>
+
+</html>

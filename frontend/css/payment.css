@@ -1,0 +1,32 @@
+.payment-section {
+    overflow: hidden;
+}
+
+.card-body {
+    height: fit-content;
+}
+
+.form-control:focus {
+    box-shadow: 10px 0px 0px 0px #fff !important;
+    border-color: #4ca746;
+}
+
+.error {
+    visibility: hidden;
+}
+
+.cc-amount {
+    border: none;
+}
+
+#submit-btn {
+    background-color: var(--btn-backcolor);
+}
+#submit-btn:hover {
+    background-color: var(--hover);
+    outline: none;
+}
+#submit-btn:focus {
+    background-color: var(--hover);
+    outline: none;
+}

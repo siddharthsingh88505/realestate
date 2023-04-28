@@ -1,0 +1,35 @@
+.spad {
+    padding-top: 0;
+}
+
+/* pagination */
+.site-pagination {
+    text-align: center;
+}
+
+.site-pagination span,
+.site-pagination span:hover,
+.site-pagination a:hover {
+    color: #30caa0;
+    border-color: #30caa0;
+}
+
+.site-pagination a,
+.site-pagination span {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #e1e1e1;
+    color: #717171;
+    font-size: 18px;
+    padding-top: 4px;
+    margin-right: 15px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.site-pagination a:last-child {
+    margin-right: 0;
+}

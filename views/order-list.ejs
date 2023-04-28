@@ -1,0 +1,38 @@
+<table class="table table-stripped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">User Id</th>
+            <th scope="col">Property Id</th>
+            <th scope="col">Purchase Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if(orders.length===0){ %>
+            <tr>
+                <td scope="row">No orders found</td>
+            </tr>
+    </tbody>
+    <% } else { %>
+        <% for(let i=0; i< orders.length ;i++) { %>
+            <tr>
+                <td scope="row">
+                    <%=i+1 %>
+                </td>
+                <td scope="row">
+                    <%=orders[i].userId %>
+                </td>
+                <td scope="row">
+                    <%=orders[i].propertyId %>
+                </td>
+                <td scope="row">
+                    <%=orders[i].date.getDate() %>-<%=orders[i].date.getMonth()+1 %>-
+                            <%=orders[i].date.getFullYear() %>
+                </td>
+            </tr>
+            <% } %>
+
+                </tbody>
+                <% } %>
+                    </tbody>
+</table>

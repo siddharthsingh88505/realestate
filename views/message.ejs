@@ -1,0 +1,22 @@
+<div class="message__area">
+    <% if(haveMessage) { %>
+        <% messages.forEach(chat=>{ %>
+            <% if(chat.from===sender) { %>
+                <div class="outgoing message">
+                    <p>
+                        <%=chat.message %>
+                    </p>
+                </div>
+                <% } else { %>
+                    <div class="incoming message">
+                        <p>
+                            <%=chat.message %>
+                        </p>
+                    </div>
+                    <% } %>
+                        <% }) %>
+                            <% } %>
+</div>
+<div class="textarea-div">
+    <textarea name="" id="textarea" cols="30" rows="1" placeholder="Write a message....."></textarea>
+</div>

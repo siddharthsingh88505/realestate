@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+
+<body>
+    <!-- header section -->
+    <header class="container-fluid header-section">
+        <!-- top header -->
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <!-- left content -->
+                    <div class="col-lg-6 header-top-left">
+                        <div class="top-info">
+                            <i class="fa fa-phone"></i>
+                            (+91) 7767824255
+                        </div>
+                        <div class="top-info">
+                            <i class="fa fa-envelope"></i>
+                            siddharthsingh88505@gmail.com
+                        </div>
+                    </div>
+                    <!-- right content -->
+                    <div class="col-lg-6 text-lg-right header-top-right">
+                        <div class="top-social">
+                            <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href=""><i class="fa-brands fa-twitter"></i></a>
+                            <a href=""><i class="fa-brands fa-instagram"></i></a>
+                            <a href=""><i class="fa-brands fa-pinterest"></i></a>
+                            <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                        </div>
+                        <div class="user-panel">
+                            <a href="/register"><i class="fa-regular fa-user"></i> Register</a>
+                            <a href="/login"><i class="fa fa-sign-in"></i> Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- main header -->
+        <div class="container">
+            <div class="main-header row">
+                <div class="col-12">
+                    <div class="site-navbar">
+                        <a href="/" class="site-logo">REAL<span class="estate">ESTATE</span></a>
+                        <!-- hamburger menu -->
+                        <div class="nav-switch">
+                            <i class="fa fa-bars"></i>
+                        </div>
+                        <!-- main menu -->
+                        <ul class="main-menu">
+                            <li><a href="/">HOME</a></li>
+                            <li><a href="/featured">FEATURED LISTING</a></li>
+                            <li><a href="/about">ABOUT US</a></li>
+                            <li><a href="/contact">CONTACT</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="togglebars container">
+            <ul class="toggle-menu">
+                <li><a href="/">HOME</a></li>
+                <li><a href="/featured">FEATURED LISTING</a></li>
+                <li><a href="/about">ABOUT US</a></li>
+                <li><a href="/contact">CONTACT</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- login section -->
+    <section class="container form-section">
+        <h2 class="text-center form-title">Please Login</h2>
+        <!-- failed error message -->
+        <% if(status==="Failed" ) { %>
+            <div class="alert alert-danger">
+                <strong>
+                    <%= status %>,
+                        <%= message %>
+                </strong>
+            </div>
+            <% } %>
+                <!-- success message -->
+                <% if(status==="Success" ) { %>
+                    <div class="alert alert-success">
+                        <strong>
+                            <%= status %>,
+                                <%= message %>
+                        </strong>
+                    </div>
+                    <% } %>
+                        <div class="form-container">
+                            <form action="/login" method="post">
+                                <!-- email input section -->
+                                <div class="input-email">
+                                    <i class="fa fa-envelope email-icon"></i>
+                                    <input type="email" placeholder="Email" class="email" name="email"
+                                        inputmode="numeric" tabindex="1" value="<%= data.email %>">
+                                </div>
+                                <p class="error email-error text-danger">Email error</p>
+                                <!-- password input section -->
+                                <div class="input-password">
+                                    <i class="fa fa-lock lock"></i>
+                                    <input type="password" placeholder="Password" class="password" name="password"
+                                        tabindex="2" value="<%= data.password %>">
+                                </div>
+                                <p class="error password-error text-danger">Password error</p>
+                                <!-- submit btn -->
+                                <div class="input-submit">
+                                    <input type="submit" value="Login" class="submit-btn" tabindex="3">
+                                </div>
+
+                            </form>
+                        </div>
+    </section>
+
+    <!-- footer section -->
+    <footer class="container-fluid footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <a href="/" class="site-logo">REAL<span class="estate">ESTATE</span></a>
+                    <p>This project is developed to buy and rent the property as well as know the rates of different
+                        property. </p>
+                    <div class="social">
+                        <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href=""><i class="fa-brands fa-twitter"></i></a>
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-pinterest"></i></a>
+                        <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <div class="contact-widget">
+                        <h5 class="fw-title">CONTACT US</h5>
+                        <p><i class="fa fa-map-marker"></i>401-209 Nallasopara,Maharashtra. </p>
+                        <p><i class="fa fa-phone"></i>(+91) 7767824255</p>
+                        <p><i class="fa fa-envelope"></i>siddharthsingh88505@gmail.com</p>
+                        <p><i class="fa fa-clock-o"></i>Mon - Sat, 10:00 AM - 06:00 PM</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <div class="double-menu-widget">
+                        <h5 class="fw-title">POPULAR PLACES</h5>
+                        <ul>
+                            <li><a href="">Florida</a></li>
+                            <li><a href="">New York</a></li>
+                            <li><a href="">Washington</a></li>
+                            <li><a href="">Los Angeles</a></li>
+                            <li><a href="">Chicago</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="">St Louis</a></li>
+                            <li><a href="">Jacksonville</a></li>
+                            <li><a href="">San Jose</a></li>
+                            <li><a href="">San Diego</a></li>
+                            <li><a href="">Houston</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-nav">
+                    <!-- footer nav links -->
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/featured">Featured Listing</a></li>
+                        <li><a href="/about">About us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- javascript files -->
+    <!-- Custom JavaScript -->
+    <script src="/js/index.js"></script>
+    <script src="/js/login.js"></script>
+</body>
+
+</html>

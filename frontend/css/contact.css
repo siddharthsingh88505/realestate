@@ -1,0 +1,39 @@
+/* page section */
+.page-section {
+    padding-bottom: 0px;
+}
+
+.contact-info-wrap {
+    background: #30caa0;
+    padding: 25px 8px;
+    text-align: center;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.contact-info-wrap p {
+    margin-bottom: 0;
+    font-size: 20px;
+    color: #000;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.page-section img {
+    margin-top: 5px;
+}
+
+/* media queries */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .contact-info-warp p {
+        font-size: 20px;
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .contact-right {
+        padding-top: 15px;
+    }
+}

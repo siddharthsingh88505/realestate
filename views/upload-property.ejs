@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Property</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- font-awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/upload-property.css">
+</head>
+
+<body>
+    <!-- header section -->
+    <header class="container-fluid header-section">
+        <!-- top header -->
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <!-- left content -->
+                    <div class="col-lg-6 header-top-left">
+                        <div class="top-info">
+                            <i class="fa fa-phone"></i>
+                            (+91) 7767824255
+                        </div>
+                        <div class="top-info">
+                            <i class="fa fa-envelope"></i>
+                            siddharthsingh88505@gmail.com
+                        </div>
+                    </div>
+                    <!-- right content -->
+                    <div class="col-lg-6 text-lg-right header-top-right">
+                        <div class="top-social">
+                            <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href=""><i class="fa-brands fa-twitter"></i></a>
+                            <a href=""><i class="fa-brands fa-instagram"></i></a>
+                            <a href=""><i class="fa-brands fa-pinterest"></i></a>
+                            <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                        </div>
+                        <% if(verified) { %>
+                            <% if(userType==="Agent" && !isAdmin ) { %>
+                                <div class="user-panel">
+                                    <a href="/logout"><i class="fa fa-sign-in"></i> &nbsp;Logout</a>
+                                </div>
+                                <% } else if(isAdmin) { %>
+                                    <% if(verified) { %>
+                                        <div class="user-panel">
+                                            <a href="/logout"><i class="fa fa-sign-in"></i> &nbsp;Logout</a>
+                                        </div>
+                                        <% } else { %>
+                                            <div class="user-panel">
+                                                <a href="/login"><i class="fa fa-sign-in"></i> &nbsp;Login</a>
+                                            </div>
+                                            <% } %>
+                                                <% } else { %>
+                                                    <div class="user-panel">
+                                                        <a href="/register-as-agent"><i class="fa fa-sign-in"></i>
+                                                            &nbsp;Register as
+                                                            Agent</a>
+                                                        <a href="/logout"><i class="fa fa-sign-in"></i> &nbsp;Logout</a>
+                                                    </div>
+                                                    <% } %>
+                                                        <% } else { %>
+                                                            <div class="user-panel">
+                                                                <a href="/register"><i
+                                                                        class="fa-regular fa-user"></i>&nbsp;Register</a>
+                                                                <a href="/login"><i class="fa fa-sign-in"></i>
+                                                                    &nbsp;Login</a>
+                                                            </div>
+                                                            <% } %>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- main header -->
+        <div class="container">
+            <div class="main-header row">
+                <div class="col-12">
+                    <div class="site-navbar">
+                        <a href="/" class="site-logo">REAL<span class="estate">ESTATE</span></a>
+                        <!-- hamburger menu -->
+                        <div class="nav-switch">
+                            <i class="fa fa-bars"></i>
+                        </div>
+                        <!-- main menu -->
+                        <ul class="main-menu">
+                            <li><a href="/">HOME</a></li>
+                            <% if(verified && (userType==="Agent" && !isAdmin)) { %>
+                                <li><a href="/upload-property">UPLOAD PROPERTY</a></li>
+                                <% } %>
+                                    <% if(verified && isAdmin) { %>
+                                        <li><a href="/admin/dashboard">DASHBOARD</a></li>
+                                        <% } %>
+                                            <li><a href="/featured">FEATURED LISTING</a></li>
+                                            <li><a href="/about">ABOUT US</a></li>
+                                            <li><a href="/contact">CONTACT</a></li>
+                                            <% if(verified && !isAdmin) {%>
+                                                <li><a href="/chat">Chat</a></li>
+                                                <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="togglebars container">
+            <ul class="toggle-menu">
+                <li><a href="/">HOME</a></li>
+                <% if(verified && (userType==="Agent" && !isAdmin)) { %>
+                    <li><a href="/upload-property">UPLOAD PROPERTY</a></li>
+                    <% } %>
+                        <% if(verified && isAdmin) { %>
+                            <li><a href="/admin/dashboard">DASHBOARD</a></li>
+                            <% } %>
+                                <li><a href="/featured">FEATURED LISTING</a></li>
+                                <li><a href="/about">ABOUT US</a></li>
+                                <li><a href="/contact">CONTACT</a></li>
+                                <% if(verified && !isAdmin) {%>
+                                    <li><a href="/chat">Chat</a></li>
+                                    <% } %>
+            </ul>
+        </div>
+    </header>
+
+    <!-- upload section -->
+    <div class="upload-section">
+        <!-- failed error message -->
+        <div class="upload-section-div">
+            <div class="form-container form-section">
+                <h2 class="text-center form-title">Property Upload Form</h2>
+                <% if(status==="Failed" ) { %>
+                    <div class="alert alert-danger">
+                        <strong>
+                            <%= status %>,
+                                <%= message %>
+                        </strong>
+                    </div>
+                    <% } %>
+                        <!-- success message -->
+                        <% if(status==="Success" ) { %>
+                            <div class="alert alert-success">
+                                <strong>
+                                    <%= status %>,
+                                        <%= message %>
+                                </strong>
+                            </div>
+                            <% } %>
+                                <form action="/upload-property" method="post" enctype="multipart/form-data">
+                                    <div class="input-name">
+                                        <input type="text" id="name" name="name" class="name" value="<%= data.name %>"
+                                            placeholder="Property Name" autofocus>
+                                    </div>
+                                    <p class="error name-error text-danger">Property name error</p>
+                                    <div class="input-location">
+                                        <input type="text" id="location" name="location" class=""
+                                            value="<%= data.location %>" placeholder="Property Location">
+                                    </div>
+                                    <p class="error location-error text-danger">Location error</p>
+                                    <div class="input-desc">
+                                        <textarea name="description" id="description" class=""
+                                            value="<%= data.description %>" cols="30" rows="5"
+                                            placeholder="Description of Property"></textarea>
+                                    </div>
+                                    <p class="error desc-error text-danger">Description error</p>
+                                    <div class="input-price">
+                                        <input type="text" name="price" class="" value="<%= data.price %>"
+                                            placeholder="Price of Property">
+                                    </div>
+                                    <p class="error price-error text-danger">Price error</p>
+                                    <div class="input-area">
+                                        <input type="text" name="area" inputmode="numeric" class=""
+                                            value="<%= data.area %>" placeholder="Area of Property">
+                                    </div>
+                                    <p class="error area-error text-danger">area error</p>
+                                    <div class="input-bedroom">
+                                        <input type="text" name="bedroom" inputmode="numeric" class=""
+                                            value="<%= data.bedroom %>" placeholder="No of Bedroom">
+                                    </div>
+                                    <p class="error bedroom-error text-danger">bedroom error</p>
+                                    <div class="input-bathroom">
+                                        <input type="text" name="bathroom" inputmode="numeric" class=""
+                                            value="<%= data.bathroom %>" placeholder="No of Bathroom">
+                                    </div>
+                                    <p class="error bathroom-error text-danger">bathroom error</p>
+                                    <div class="input-owner">
+                                        <input type="text" name="owner" class="" value="<%= data.owner %>"
+                                            placeholder="Owner of Property">
+                                    </div>
+                                    <p class="error owner-error text-danger">owner error</p>
+                                    <div class="input-type">
+                                        <select name="type" id="type" class="">
+                                            <option value="-1" <% if(data.type==='-1' ) { %>selected<% } %>>Select
+                                                    Property Type</option>
+                                            <option value="apartment" <% if(data.type==='apartment' ) { %>selected<% }
+                                                    %>>Apartment</option>
+                                            <option value="family" <% if(data.type==='family' ) { %>selected<% } %>
+                                                    >Family</option>
+                                            <option value="resort" <% if(data.type==='resort' ) { %>selected<% } %>
+                                                    >Resort</option>
+                                            <option value="office" <% if(data.type==='office' ) { %>selected<% } %>
+                                                    >Office</option>
+                                        </select>
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <p class="error type-error text-danger">Type error</p>
+                                    <div class="input-city">
+                                        <select name="city" id="city" class="">
+                                            <option value="-1" <% if(data.city==='-1' ) { %>selected<% } %>
+                                                    style="color:#9d898c;">Select Property City</option>
+                                            <option value="mumbai" <% if(data.city==='mumbai' ) { %>selected<% } %>
+                                                    >Mumbai</option>
+                                            <option value="delhi" <% if(data.city==='delhi' ) { %>selected<% } %>>Delhi
+                                            </option>
+                                            <option value="kolkata" <% if(data.city==='kolkata' ) { %>selected<% } %>
+                                                    >Kolkata</option>
+                                            <option value="bengaluru" <% if(data.city==='bengaluru' ) { %>selected<% }
+                                                    %>>Bengaluru</option>
+                                            <option value="chennai" <% if(data.city==='chennai' ) { %>selected<% } %>
+                                                    >Chennai</option>
+                                            <option value="jaipur" <% if(data.city==='jaipur' ) { %>selected<% } %>
+                                                    >Jaipur</option>
+                                            <option value="pune" <% if(data.city==='pune' ) { %>selected<% } %>>Pune
+                                            </option>
+                                            <option value="mysore" <% if(data.city==='mysore' ) { %>selected<% } %>
+                                                    >Mysore</option>
+                                            <option value="surat" <% if(data.city==='surat' ) { %>selected<% } %>>Surat
+                                            </option>
+                                            <option value="hyderabad" <% if(data.city==='hyderabad' ) { %>selected<% }
+                                                    %>>Hyderabad</option>
+                                            <option value="agra" <% if(data.city==='agra' ) { %>selected<% } %>>Agra
+                                            </option>
+                                            <option value="varanasi" <% if(data.city==='varanasi' ) { %>selected<% } %>
+                                                    >Varanasi</option>
+                                            <option value="udaipur" <% if(data.city==='udaipur' ) { %>selected<% } %>
+                                                    >Udaipur</option>
+                                            <option value="kochi" <% if(data.city==='kochi' ) { %>selected<% } %>>Kochi
+                                            </option>
+                                            <option value="ahmedabad" <% if(data.city==='ahmedabad' ) { %>selected<% }
+                                                    %>>Ahmedabad</option>
+                                            <option value="amritsar" <% if(data.city==='amritsar' ) { %>selected<% } %>
+                                                    >Amritsar</option>
+                                            <option value="srinagar" <% if(data.city==='srinagar' ) { %>selected<% } %>
+                                                    >Srinagar</option>
+                                            <option value="shimla" <% if(data.city==='shimla' ) { %>selected<% } %>
+                                                    >Shimla</option>
+                                            <option value="patna" <% if(data.city==='patna' ) { %>selected<% } %>>Patna
+                                            </option>
+                                            <option value="indore" <% if(data.city==='indore' ) { %>selected<% } %>
+                                                    >Indore</option>
+                                            <option value="vadodara" <% if(data.city==='vadodara' ) { %>selected<% } %>
+                                                    >Vadodara</option>
+                                            <option value="nashik" <% if(data.city==='nashik' ) { %>selected<% } %>
+                                                    >Nashik</option>
+                                            <option value="nagpur" <% if(data.city==='nagpur' ) { %>selected<% } %>
+                                                    >Nagpur</option>
+                                            <option value="noida" <% if(data.city==='noida' ) { %>selected<% } %>>Noida
+                                            </option>
+                                        </select>
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <p class="error city-error text-danger">city error</p>
+                                    <div class="input-type">
+                                        <select name="noticType" id="notic-type" class="">
+                                            <option value="-1" <% if(data.noticType==='-1' ) { %>selected<% } %>>Select
+                                                    Property Notic</option>
+                                            <option value="Rent" <% if(data.noticType==='Rent' ) { %>selected<% } %>
+                                                    >Rent</option>
+                                            <option value="Sale" <% if(data.noticType==='Sale' ) { %>selected<% } %>
+                                                    >Sale</option>
+                                        </select>
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <p class="error notic-error text-danger">notic error</p>
+                                    <div class="input-image text-center">
+                                        <label for="input-image">
+                                            <div>
+                                                Select Image <i class="fa-solid fa-image"></i>
+                                            </div>
+                                            <input type="file" id="input-image" name="image" class="" accept="image/*"
+                                                multiple>
+                                        </label>
+                                        <span id="image-name"></span>
+                                    </div>
+                                    <p class="error image-error text-danger">image error</p>
+                                    <div class="input-video text-center">
+                                        <label for="input-video">
+                                            <div>
+                                                Select Video <i class="fa-solid fa-video"></i>
+                                            </div>
+                                            <input type="file" name="video" class="" id="input-video" accept="video/*"
+                                                multiple>
+                                        </label>
+                                        <span id="video-name"></span>
+                                    </div>
+                                    <p class="error"></p>
+                                    <div class="input-submit">
+                                        <input type="submit" class="submit-btn" value="UPLOAD">
+                                    </div>
+                                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer section -->
+    <footer class="container-fluid footer-section">
+        <div class="hidden-element" hidden>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <a href="/" class="site-logo">REAL<span class="estate">ESTATE</span></a>
+                    <p>This project is developed to buy and rent the property as well as know the rates of different
+                        property. </p>
+                    <div class="social">
+                        <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href=""><i class="fa-brands fa-twitter"></i></a>
+                        <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-pinterest"></i></a>
+                        <a href=""><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <div class="contact-widget">
+                        <h5 class="fw-title">CONTACT US</h5>
+                        <p><i class="fa fa-map-marker"></i>401-209 Nallasopara,Maharashtra. </p>
+                        <p><i class="fa fa-phone"></i>(+91) 7767824255</p>
+                        <p><i class="fa fa-envelope"></i>siddharthsingh88505@gmail.com</p>
+                        <p><i class="fa fa-clock-o"></i>Mon - Sat, 10:00 AM - 06:00 PM</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 footer-widget">
+                    <div class="double-menu-widget">
+                        <h5 class="fw-title">POPULAR PLACES</h5>
+                        <ul>
+                            <li><a href="">Florida</a></li>
+                            <li><a href="">New York</a></li>
+                            <li><a href="">Washington</a></li>
+                            <li><a href="">Los Angeles</a></li>
+                            <li><a href="">Chicago</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="">St Louis</a></li>
+                            <li><a href="">Jacksonville</a></li>
+                            <li><a href="">San Jose</a></li>
+                            <li><a href="">San Diego</a></li>
+                            <li><a href="">Houston</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-nav">
+                    <!-- footer nav links -->
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/featured">Featured Listing</a></li>
+                        <li><a href="/about">About us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="/js/index.js"></script>
+    <script src="/js/upload-property.js"></script>
+</body>
+
+</html>
