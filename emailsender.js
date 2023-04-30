@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
     // credential 
     auth: {
         user: "siddharthsingh88505@gmail.com",
-        pass: "aryplvhgkfzdnnlb" //google app-specific password
+        pass: "" //google app-specific password
     }
 
 });
