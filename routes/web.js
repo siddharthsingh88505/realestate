@@ -18,7 +18,7 @@ const router = express.Router();
 // const upload = multer({ storage: storage });
 
 // Mongo uri
-const mongoURI = "mongodb://127.0.0.1:27017/dummy";
+const mongoURI = process.env.DATABASE_URL;
 
 // Create mongoconnection
 const conn = mongoose.createConnection(mongoURI);
