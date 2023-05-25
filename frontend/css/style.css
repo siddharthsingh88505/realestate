@@ -451,7 +451,7 @@ img {
     width: auto;
     height: 250px;
     background-image: url(../img/service.jpg);
-    background-size: contain;
+    background-size: cover;
 }
 
 .feature-pic .sale-notic,
